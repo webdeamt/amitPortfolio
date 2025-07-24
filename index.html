@@ -286,7 +286,110 @@
             <div class="relative">
               <video class="w-full hero-video object-cover" muted loop>
                 <source
-                  src="_the_inevitable_guy_-20250722-0001.mp4"
+                  src=":root {
+        --primary: #14b8a6;
+        --secondary: #e2e8f0;
+        --accent: #f59e0b;
+        --text: #e2e8f0;
+        --light-bg: #0f172a;
+        --dark-bg: #f8fafc;
+        --dark-text: #334155;
+    }
+        
+        body.dark {
+            --primary: #14b8a6;
+            --secondary: #e2e8f0;
+            --accent: #f59e0b;
+            --text: #e2e8f0;
+            --light-bg: #0f172a;
+            --dark-bg: #f8fafc;
+            --dark-text: #334155;
+            background-color: var(--light-bg);
+        }
+        
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background-color: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-video {
+            aspect-ratio: 9/16;
+            max-height: 80vh;
+        }
+
+        .portfolio-item {
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .review-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        
+
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .typing-demo {
+            width: 22ch;
+            animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid;
+            font-family: monospace;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+        }
+            
+        @keyframes blink {
+            50% { border-color: transparent }
+        }"
                   type="video/mp4"
                 />
               </video>
