@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Amit Chaurasia - Video Editor Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              teal: {
+                400: '#2dd4bf',
+                500: '#14b8a6',
+                600: '#0d9488',
+              }
+            },
+            fontFamily: {
+              sans: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -15,159 +34,111 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <!-- Floating WhatsApp Button -->
+  <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
+    
     <div class="fixed bottom-8 right-8 z-50">
       <a
         href="https://wa.me/918240898996"
         target="_blank"
-        class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-green-600 transition-all transform hover:scale-110"
+        class="bg-green-500 text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-lg hover:bg-green-600 transition-all transform hover:scale-110 hover:rotate-12"
       >
         <i class="fab fa-whatsapp"></i>
       </a>
     </div>
 
-    <!-- Navigation -->
-    <header
-      class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg"
-    >
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
       <nav class="container mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-          <a href="#" class="text-2xl font-bold text-slate-800 dark:text-white"
+          <a href="#" class="text-2xl font-bold tracking-tighter"
             >Amit<span class="text-teal-500">.</span></a
           >
 
-          <!-- Desktop Navigation -->
-          <div class="hidden md:flex space-x-8">
-            <a
-              href="#home"
-              class="nav-link text-slate-700 dark:text-slate-300 font-medium"
-              >Home</a
-            >
-            <a
-              href="#portfolio"
-              class="nav-link text-slate-700 dark:text-slate-300 font-medium"
-              >Portfolio</a
-            >
-            <a
-              href="#reviews"
-              class="nav-link text-slate-700 dark:text-slate-300 font-medium"
-              >Reviews</a
-            >
-            <a
-              href="#brands"
-              class="nav-link text-slate-700 dark:text-slate-300 font-medium"
-              >Brands</a
-            >
-            <a
-              href="#contact"
-              class="nav-link text-slate-700 dark:text-slate-300 font-medium"
-              >Contact</a
-            >
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#home" class="nav-link font-medium hover:text-teal-500 transition">Home</a>
+            <a href="#portfolio" class="nav-link font-medium hover:text-teal-500 transition">Portfolio</a>
+            <a href="#pricing" class="nav-link font-medium hover:text-teal-500 transition">Services & Rates</a>
+            <a href="#reviews" class="nav-link font-medium hover:text-teal-500 transition">Reviews</a>
+            <a href="#contact" class="nav-link font-medium hover:text-teal-500 transition">Contact</a>
 
-            <!-- Dark Mode Toggle -->
             <button
               id="theme-toggle"
-              class="text-slate-700 dark:text-slate-300"
-            ></button>
+              class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+            </button>
           </div>
 
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button
-              id="mobile-menu-button"
-              class="text-slate-700 dark:text-slate-300"
+          <div class="md:hidden flex items-center gap-4">
+             <button
+              id="theme-toggle-mobile"
+              class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
             >
-              <i class="fas fa-bars text-xl"></i>
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+            </button>
+            <button id="mobile-menu-button" class="text-2xl focus:outline-none">
+              <i class="fas fa-bars"></i>
             </button>
           </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-4">
-          <a
-            href="#home"
-            class="block nav-link text-slate-700 dark:text-slate-300"
-            >Home</a
-          >
-          <a
-            href="#portfolio"
-            class="block nav-link text-slate-700 dark:text-slate-300"
-            >Portfolio</a
-          >
-          <a
-            href="#reviews"
-            class="block nav-link text-slate-700 dark:text-slate-300"
-            >Reviews</a
-          >
-          <a
-            href="#brands"
-            class="block nav-link text-slate-700 dark:text-slate-300"
-            >Brands</a
-          >
-          <a
-            href="#contact"
-            class="block nav-link text-slate-700 dark:text-slate-300"
-            >Contact</a
-          >
-
-          <button id="theme-toggle-mobile" class="flex items-center"></button>
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4 border-t border-slate-200 dark:border-slate-700 pt-4">
+          <a href="#home" class="block py-2 hover:text-teal-500">Home</a>
+          <a href="#portfolio" class="block py-2 hover:text-teal-500">Portfolio</a>
+          <a href="#pricing" class="block py-2 hover:text-teal-500">Services & Rates</a>
+          <a href="#reviews" class="block py-2 hover:text-teal-500">Reviews</a>
+          <a href="#contact" class="block py-2 hover:text-teal-500">Contact</a>
         </div>
       </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="py-20 md:py-32 relative overflow-hidden">
       <img
-        src="bg.png"
-        alt="Abstract gradient background with teal and navy blue colors"
-        class="absolute inset-0 w-full h-full object-cover opacity-20 dark:opacity-10"
+        src="bg.png" 
+        onerror="this.style.display='none'"
+        alt="Background"
+        class="absolute inset-0 w-full h-full object-cover opacity-10 pointer-events-none"
       />
+      
       <div class="container mx-auto px-6 relative z-10">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-          <div class="md:w-1/2 mb-12 md:mb-0">
-            <h1
-              class="text-4xl md:text-6xl font-bold text-slate-800 dark:text-white mb-6 leading-tight"
-            >
+        <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+          <div class="md:w-1/2 text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
               I'm <span class="text-teal-500">Amit Chaurasia</span>
             </h1>
-            <h2 class="text-xl md:text-2xl text-orange-500 mb-8 typing-demo">
-              Video & Reel Editor
+            <h2 class="text-xl md:text-3xl text-orange-500 mb-8 font-mono h-8">
+              <span class="typing-demo">Video & Reel Editor</span>
             </h2>
-            <p class="text-slate-600 dark:text-slate-300 text-lg mb-8">
-              A results-driven video and reel editor with a sharp eye for
-              storytelling that connects, converts, and goes viral. With
-              hands-on expertise in Instagram Reels, YouTube Shorts, and
-              Snapchat lens creation, I specialize in turning raw footage into
-              scroll-stopping content that brands remember and audiences share.
+            <p class="text-slate-600 dark:text-slate-400 text-lg mb-8 leading-relaxed">
+              A results-driven video editor specializing in <strong>Instagram Reels, YouTube Shorts, and Snapchat lenses</strong>. I turn raw footage into viral, scroll-stopping content.
             </p>
-            <div class="flex space-x-4">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <a
                 href="#portfolio"
-                class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105"
+                class="bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg shadow-teal-500/30"
               >
                 View My Work
               </a>
               <a
                 href="#contact"
-                class="border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105"
+                class="border-2 border-teal-500 text-teal-500 hover:bg-teal-500 hover:text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105"
               >
                 Contact Me
               </a>
             </div>
           </div>
-          <div class="md:w-1/2 flex justify-center">
+          
+          <div class="md:w-1/2 flex justify-center relative">
             <div class="relative float">
-              <div
-                class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-teal-100/50 dark:bg-teal-900/20 absolute -z-10 -top-4 -left-4"
-              ></div>
-              <div
-                class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-orange-100/50 dark:bg-orange-900/20 absolute -z-10 -bottom-4 -right-4"
-              ></div>
+              <div class="absolute -top-4 -left-4 w-64 h-64 bg-teal-200/20 rounded-full blur-3xl"></div>
+              <div class="absolute -bottom-4 -right-4 w-64 h-64 bg-orange-200/20 rounded-full blur-3xl"></div>
+              
               <img
                 src="potrait.png"
-                alt="Professional portrait of Amit Chaurasia, a young Indian male video editor with a creative look, standing in a studio environment"
-                class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-800 shadow-lg z-10"
+                onerror="this.src='https://placehold.co/400x400?text=Amit+Photo'"
+                alt="Amit Chaurasia"
+                class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-800 shadow-2xl relative z-10"
               />
             </div>
           </div>
@@ -175,619 +146,280 @@
       </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section
-      id="portfolio"
-      class="py-20 bg-slate-50 dark:bg-slate-800 overflow-hidden"
-    >
+    <section id="portfolio" class="py-20 bg-white dark:bg-slate-800/50">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2
-            class="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4"
-          >
-            My Portfolio
-          </h2>
-          <div class="w-20 h-1 bg-teal-500 mx-auto mb-6"></div>
-          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Explore my latest projects and video editing work. Each piece is
-            crafted with precision and creativity to maximize engagement.
-          </p>
+          <h2 class="text-3xl md:text-5xl font-bold mb-4">My Portfolio</h2>
+          <div class="w-20 h-1 bg-teal-500 mx-auto rounded-full"></div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Portfolio Item 1 -->
-          <div
-            class="portfolio-item bg-white dark:bg-slate-700 rounded-xl overflow-hidden shadow-lg"
-          >
-            <div class="relative w-full overflow-hidden">
-              <video
-                class="w-full object-cover rounded-t-xl block"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                poster="fallback.jpg"
-                onloadedmetadata="this.style.height=this.videoHeight/this.videoWidth*this.offsetWidth + 'px';"
-              >
+          <div class="group bg-slate-50 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+            <div class="relative aspect-[9/16] bg-black">
+              <video class="w-full h-full object-cover" loop muted playsinline poster="https://placehold.co/600x1060?text=Video+Thumbnail">
                 <source src="port1.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
-
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-6"
-              >
-                <button
-                  class="play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center text-white hover:scale-110 transition-all"
-                >
-                  <i class="fas fa-play text-2xl"></i>
+              <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="play-button w-16 h-16 bg-white/20 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-teal-500 transition-colors">
+                  <i class="fas fa-play text-2xl ml-1"></i>
                 </button>
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2">
-                Gemini Nightwear Campaign
-              </h3>
-              <p class="text-slate-600 dark:text-slate-300 mb-4">
-                A complete video campaign showcasing the latest collection with
-                engaging transitions.
-              </p>
+              <h3 class="text-xl font-bold mb-2">Fashion Campaign</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Fast-paced editing with trendy transitions.</p>
               <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-xs px-3 py-1 rounded-full"
-                  >Instagram Reels</span
-                >
-                <span
-                  class="bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-xs px-3 py-1 rounded-full"
-                  >Product Showcase</span
-                >
+                <span class="px-3 py-1 text-xs rounded-full bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300">Instagram Reel</span>
               </div>
             </div>
           </div>
 
-          <!-- Portfolio Item 2 -->
-          <div
-            class="portfolio-item bg-white dark:bg-slate-700 rounded-xl overflow-hidden shadow-lg"
-          >
-            <div class="relative w-full overflow-hidden">
-              <video
-                class="w-full object-cover rounded-t-xl block"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                poster="fallback.jpg"
-                onloadedmetadata="this.style.height=this.videoHeight/this.videoWidth*this.offsetWidth + 'px';"
-              >
+          <div class="group bg-slate-50 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+            <div class="relative aspect-[9/16] bg-black">
+              <video class="w-full h-full object-cover" loop muted playsinline poster="https://placehold.co/600x1060?text=Video+Thumbnail">
                 <source src="port2.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
-
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-6"
-              >
-                <button
-                  class="play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center text-white hover:scale-110 transition-all"
-                >
-                  <i class="fas fa-play text-2xl"></i>
+              <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="play-button w-16 h-16 bg-white/20 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-teal-500 transition-colors">
+                  <i class="fas fa-play text-2xl ml-1"></i>
                 </button>
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2">
-                Travel Vlog Series
-              </h3>
-              <p class="text-slate-600 dark:text-slate-300 mb-4">
-                Beautifully edited travel vlogs with cinematic color grading and
-                smooth transitions.
-              </p>
+              <h3 class="text-xl font-bold mb-2">Travel Vlog</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Cinematic color grading and sound design.</p>
               <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-xs px-3 py-1 rounded-full"
-                  >YouTube Shorts</span
-                >
-                <span
-                  class="bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-xs px-3 py-1 rounded-full"
-                  >Cinematic</span
-                >
+                <span class="px-3 py-1 text-xs rounded-full bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300">YouTube Short</span>
               </div>
             </div>
           </div>
 
-          <!-- Portfolio Item 3 -->
-          <div
-            class="portfolio-item bg-white dark:bg-slate-700 rounded-xl overflow-hidden shadow-lg"
-          >
-            <div class="relative w-full overflow-hidden">
-              <video
-                class="w-full object-cover rounded-t-xl block"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                poster="fallback.jpg"
-                onloadedmetadata="this.style.height=this.videoHeight/this.videoWidth*this.offsetWidth + 'px';"
-              >
+          <div class="group bg-slate-50 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+            <div class="relative aspect-[9/16] bg-black">
+              <video class="w-full h-full object-cover" loop muted playsinline poster="https://placehold.co/600x1060?text=Video+Thumbnail">
                 <source src="port3.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
-
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end p-6"
-              >
-                <button
-                  class="play-button absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/20 backdrop-blur-sm rounded-full w-16 h-16 flex items-center justify-center text-white hover:scale-110 transition-all"
-                >
-                  <i class="fas fa-play text-2xl"></i>
+              <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="play-button w-16 h-16 bg-white/20 backdrop-blur-md rounded-full text-white flex items-center justify-center hover:bg-teal-500 transition-colors">
+                  <i class="fas fa-play text-2xl ml-1"></i>
                 </button>
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-slate-800 dark:text-white mb-2">
-                Music Video Project
-              </h3>
-              <p class="text-slate-600 dark:text-slate-300 mb-4">
-                High-energy music video with dynamic editing that matches the
-                rhythm perfectly.
-              </p>
+              <h3 class="text-xl font-bold mb-2">Music Video</h3>
+              <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Beat-sync editing for high engagement.</p>
               <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-xs px-3 py-1 rounded-full"
-                  >Music Video</span
-                >
-                <span
-                  class="bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-200 text-xs px-3 py-1 rounded-full"
-                  >Rhythm Edit</span
-                >
+                <span class="px-3 py-1 text-xs rounded-full bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300">Music Video</span>
               </div>
             </div>
           </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a
-            href="#"
-            class="inline-block bg-teal-500 hover:bg-teal-600 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105"
-          >
-            View Full Portfolio
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- Reviews Section -->
+    <section id="pricing" class="py-20 bg-slate-50 dark:bg-slate-900">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-bold mb-4">Services & Rates</h2>
+          <div class="w-20 h-1 bg-teal-500 mx-auto mb-6"></div>
+          <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Transparent pricing for professional editing. Download my detailed rate card or contact me for a custom package.
+          </p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8 justify-center items-stretch">
+          <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg flex-1 hover:border-teal-500 border-2 border-transparent transition-all">
+            <div class="w-14 h-14 bg-teal-100 dark:bg-teal-900/50 rounded-full flex items-center justify-center text-teal-500 mb-6">
+              <i class="fab fa-instagram text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Reels & Shorts</h3>
+            <p class="text-slate-500 mb-6">High-retention editing with captions, B-roll, and effects.</p>
+            <ul class="space-y-3 mb-8 text-slate-600 dark:text-slate-300">
+              <li><i class="fas fa-check text-teal-500 mr-2"></i> Viral Hooks</li>
+              <li><i class="fas fa-check text-teal-500 mr-2"></i> Dynamic Captions</li>
+              <li><i class="fas fa-check text-teal-500 mr-2"></i> Color Grading</li>
+            </ul>
+          </div>
+
+          <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-lg flex-1 hover:border-teal-500 border-2 border-transparent transition-all">
+            <div class="w-14 h-14 bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center text-orange-500 mb-6">
+              <i class="fab fa-youtube text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold mb-2">YouTube Videos</h3>
+            <p class="text-slate-500 mb-6">Long-form storytelling that keeps viewers watching.</p>
+            <ul class="space-y-3 mb-8 text-slate-600 dark:text-slate-300">
+              <li><i class="fas fa-check text-orange-500 mr-2"></i> Narrative Flow</li>
+              <li><i class="fas fa-check text-orange-500 mr-2"></i> Sound Design</li>
+              <li><i class="fas fa-check text-orange-500 mr-2"></i> Motion Graphics</li>
+            </ul>
+          </div>
+
+          <div class="bg-teal-500 text-white p-8 rounded-2xl shadow-lg flex-1 flex flex-col justify-center items-center text-center transform md:-translate-y-4">
+            <i class="fas fa-file-pdf text-5xl mb-6"></i>
+            <h3 class="text-2xl font-bold mb-4">Get the Full Rate Card</h3>
+            <p class="mb-8 opacity-90">
+              Want to see detailed pricing for bulk orders and monthly packages? Download my PDF rate card.
+            </p>
+            <a href="rate-card.pdf" download="Amit_Chaurasia_Rate_Card" class="bg-white text-teal-600 px-8 py-3 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-lg w-full">
+              <i class="fas fa-download mr-2"></i> Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="reviews" class="py-20">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2
-            class="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4"
-          >
-            Client Reviews
-          </h2>
+          <h2 class="text-3xl md:text-5xl font-bold mb-4">Client Reviews</h2>
           <div class="w-20 h-1 bg-teal-500 mx-auto mb-6"></div>
-          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Don't just take my word for it. Here's what my clients say about
-            working with me.
-          </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <!-- Review 1 -->
-          <div class="review-card bg-white dark:bg-slate-700 rounded-xl p-8">
+          <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
             <div class="flex items-center mb-4">
-              <img
-                src="https://placehold.co/80x80"
-                alt="Portrait of satisfied client Rajesh Sharma, a business owner in his 40s smiling"
-                class="w-12 h-12 rounded-full object-cover mr-4"
-              />
+              <img src="https://placehold.co/80x80?text=R" class="w-12 h-12 rounded-full mr-4" alt="Client">
               <div>
-                <h4 class="font-bold text-slate-800 dark:text-white">
-                  Rajesh Sharma
-                </h4>
-                <div class="flex text-yellow-400 text-sm">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                <h4 class="font-bold">Rajesh Sharma</h4>
+                <div class="text-yellow-400 text-xs">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
               </div>
             </div>
-            <p class="text-slate-600 dark:text-slate-300">
-              "Amit transformed our product videos beyond expectation. His edits
-              increased our engagement rate by 300% on Instagram. His attention
-              to detail and understanding of trends is remarkable."
-            </p>
+            <p class="text-slate-600 dark:text-slate-300 text-sm">"Amit transformed our product videos. Engagement increased by 300% on Instagram!"</p>
           </div>
-
-          <!-- Review 2 -->
-          <div class="review-card bg-white dark:bg-slate-700 rounded-xl p-8">
+           <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
             <div class="flex items-center mb-4">
-              <img
-                src="https://placehold.co/80x80"
-                alt="Portrait of Priya Patel, a marketing manager looking professional and satisfied"
-                class="w-12 h-12 rounded-full object-cover mr-4"
-              />
+              <img src="https://placehold.co/80x80?text=P" class="w-12 h-12 rounded-full mr-4" alt="Client">
               <div>
-                <h4 class="font-bold text-slate-800 dark:text-white">
-                  Priya Patel
-                </h4>
-                <div class="flex text-yellow-400 text-sm">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
+                <h4 class="font-bold">Priya Patel</h4>
+                <div class="text-yellow-400 text-xs">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
               </div>
             </div>
-            <p class="text-slate-600 dark:text-slate-300">
-              "Working with Amit was a game-changer for our brand. His reel
-              edits consistently perform better than our in-house team's work.
-              He's fast, professional, and brings creative ideas to the table."
-            </p>
+            <p class="text-slate-600 dark:text-slate-300 text-sm">"Best editor I've worked with. Fast, professional, and very creative."</p>
           </div>
-
-          <!-- Review 3 -->
-          <div class="review-card bg-white dark:bg-slate-700 rounded-xl p-8">
+           <div class="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg">
             <div class="flex items-center mb-4">
-              <img
-                src="https://placehold.co/80x80"
-                alt="Portrait of Vikram Singh, a CEO smiling confidently"
-                class="w-12 h-12 rounded-full object-cover mr-4"
-              />
+              <img src="https://placehold.co/80x80?text=V" class="w-12 h-12 rounded-full mr-4" alt="Client">
               <div>
-                <h4 class="font-bold text-slate-800 dark:text-white">
-                  Vikram Singh
-                </h4>
-                <div class="flex text-yellow-400 text-sm">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star-half-alt"></i>
+                <h4 class="font-bold">Vikram Singh</h4>
+                <div class="text-yellow-400 text-xs">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
               </div>
             </div>
-            <p class="text-slate-600 dark:text-slate-300">
-              "Amit's Snapchat lens creations brought our campaign to life. The
-              engagement was incredible and gave our brand a modern, fresh
-              appeal to younger audiences. Highly recommend his services!"
-            </p>
+            <p class="text-slate-600 dark:text-slate-300 text-sm">"His Snapchat lens creations brought our campaign to life. Highly recommended!"</p>
           </div>
-        </div>
-
-        <!-- Review Form -->
-        <div
-          class="max-w-2xl mx-auto mt-20 bg-white dark:bg-slate-700 rounded-xl p-8 shadow-lg"
-        >
-          <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-6">
-            Share Your Experience
-          </h3>
-          <form id="reviewForm">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label
-                  for="name"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                  >Your Name</label
-                >
-                <input
-                  type="text"
-                  id="name"
-                  class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-                />
-              </div>
-              <div>
-                <label
-                  for="email"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                  >Email</label
-                >
-                <input
-                  type="email"
-                  id="email"
-                  class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-                />
-              </div>
-            </div>
-            <div class="mt-4">
-              <label
-                for="rating"
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                >Rating</label
-              >
-              <div class="flex space-x-1">
-                <button type="button" class="star-rating" data-value="1">
-                  <i class="far fa-star text-yellow-400 text-xl"></i>
-                </button>
-                <button type="button" class="star-rating" data-value="2">
-                  <i class="far fa-star text-yellow-400 text-xl"></i>
-                </button>
-                <button type="button" class="star-rating" data-value="3">
-                  <i class="far fa-star text-yellow-400 text-xl"></i>
-                </button>
-                <button type="button" class="star-rating" data-value="4">
-                  <i class="far fa-star text-yellow-400 text-xl"></i>
-                </button>
-                <button type="button" class="star-rating" data-value="5">
-                  <i class="far fa-star text-yellow-400 text-xl"></i>
-                </button>
-              </div>
-              <input type="hidden" id="rating" value="0" />
-            </div>
-            <div class="mt-4">
-              <label
-                for="review"
-                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                >Your Review</label
-              >
-              <textarea
-                id="review"
-                rows="4"
-                class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              class="mt-6 bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105"
-            >
-              Submit Review
-            </button>
-          </form>
         </div>
       </div>
     </section>
 
-    <!-- Brands Section -->
-    <!-- <section id="brands" class="py-20 bg-slate-50 dark:bg-slate-800">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4">Featured Brands</h2>
-                <div class="w-20 h-1 bg-teal-500 mx-auto mb-6"></div>
-                <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-                    I've had the privilege to work with these amazing brands and create impactful video content.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 items-center">
-                <div class="flex justify-center">
-                    <img src="https://placehold.co/160x80" alt="Gemini Nightwears logo with elegant typography on dark background" class="h-12 object-contain opacity-80 hover:opacity-100 transition-all">
-                </div>
-                <div class="flex justify-center">
-                    <img src="https://placehold.co/160x80" alt="Classic jewelry brand logo with gold accent and serif font" class="h-12 object-contain opacity-80 hover:opacity-100 transition-all">
-                </div>
-                <div class="flex justify-center">
-                    <img src="https://placehold.co/160x80" alt="Modern fashion brand logo with minimalist design and bold typography" class="h-12 object-contain opacity-80 hover:opacity-100 transition-all">
-                </div>
-                <div class="flex justify-center">
-                    <img src="https://placehold.co/160x80" alt="Wellness brand logo with soft green tones and leaf motif" class="h-12 object-contain opacity-80 hover:opacity-100 transition-all">
-                </div>
-                <div class="flex justify-center">
-                    <img src="https://placehold.co/160x80" alt="Technology startup logo with blue gradient and abstract icon" class="h-12 object-contain opacity-80 hover:opacity-100 transition-all">
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Stats Section -->
-    <section
-      class="py-16 bg-gradient-to-r from-teal-500 to-blue-500 text-white"
-    >
+    <section class="py-16 bg-gradient-to-r from-teal-500 to-blue-600 text-white">
       <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-          <div class="p-6">
-            <div
-              class="text-4xl md:text-5xl font-bold mb-2 counter"
-              data-target="150"
-            >
-              0
-            </div>
-            <div class="text-sm uppercase tracking-wider">
-              Projects Completed
-            </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div class="p-4">
+            <div class="text-4xl font-bold mb-2 counter" data-target="150">0</div>
+            <div class="text-xs uppercase tracking-wider opacity-80">Projects</div>
           </div>
-          <div class="p-6">
-            <div
-              class="text-4xl md:text-5xl font-bold mb-2 counter"
-              data-target="45"
-            >
-              0
-            </div>
-            <div class="text-sm uppercase tracking-wider">Happy Clients</div>
+          <div class="p-4">
+            <div class="text-4xl font-bold mb-2 counter" data-target="45">0</div>
+            <div class="text-xs uppercase tracking-wider opacity-80">Happy Clients</div>
           </div>
-          <div class="p-6">
-            <div
-              class="text-4xl md:text-5xl font-bold mb-2 counter"
-              data-target="3.5"
-            >
-              0
-            </div>
-            <div class="text-sm uppercase tracking-wider">Million Views</div>
+          <div class="p-4">
+            <div class="text-4xl font-bold mb-2 counter" data-target="15">0</div>
+            <div class="text-xs uppercase tracking-wider opacity-80">Million Views</div>
           </div>
-          <div class="p-6">
-            <div
-              class="text-4xl md:text-5xl font-bold mb-2 counter"
-              data-target="12"
-            >
-              0
-            </div>
-            <div class="text-sm uppercase tracking-wider">Awards</div>
+          <div class="p-4">
+            <div class="text-4xl font-bold mb-2 counter" data-target="12">0</div>
+            <div class="text-xs uppercase tracking-wider opacity-80">Awards</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-20">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16">
-          <h2
-            class="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mb-4"
-          >
-            Let's Work Together
-          </h2>
+          <h2 class="text-3xl md:text-5xl font-bold mb-4">Let's Work Together</h2>
           <div class="w-20 h-1 bg-teal-500 mx-auto mb-6"></div>
-          <p class="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Have a project in mind? Get in touch and let's create something
-            amazing together!
-          </p>
         </div>
 
-        <div class="flex flex-col lg:flex-row gap-12">
-          <div class="lg:w-1/2">
+        <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto">
+          <div class="lg:w-3/5">
             <form
-              id="contactForm"
-              class="bg-white dark:bg-slate-700 rounded-xl p-8 shadow-lg"
+              action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+              method="POST"
+              class="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl"
             >
-              <div class="mb-6">
-                <label
-                  for="contact-name"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                  >Your Name</label
-                >
-                <input
-                  type="text"
-                  id="contact-name"
-                  class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-                />
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="block text-sm font-medium mb-2">Name</label>
+                  <input type="text" name="name" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium mb-2">Email</label>
+                  <input type="email" name="email" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                </div>
               </div>
               <div class="mb-6">
-                <label
-                  for="contact-email"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                  >Email Address</label
-                >
-                <input
-                  type="email"
-                  id="contact-email"
-                  class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-                />
+                <label class="block text-sm font-medium mb-2">Subject</label>
+                <input type="text" name="subject" class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
               </div>
               <div class="mb-6">
-                <label
-                  for="contact-subject"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                  >Subject</label
-                >
-                <input
-                  type="text"
-                  id="contact-subject"
-                  class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-                />
+                <label class="block text-sm font-medium mb-2">Message</label>
+                <textarea name="message" rows="5" required class="w-full px-4 py-3 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
               </div>
-              <div class="mb-6">
-                <label
-                  for="contact-message"
-                  class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
-                  >Message</label
-                >
-                <textarea
-                  id="contact-message"
-                  rows="5"
-                  class="w-full px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-slate-800 dark:text-white"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                class="w-full bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105"
-              >
+              <button type="submit" class="w-full bg-teal-500 hover:bg-teal-600 text-white font-bold py-4 rounded-lg transition-all transform hover:scale-[1.02]">
                 Send Message
               </button>
             </form>
           </div>
 
-          <div class="lg:w-1/2">
-            <div
-              class="bg-white dark:bg-slate-700 rounded-xl p-8 shadow-lg h-full"
-            >
-              <h3
-                class="text-2xl font-bold text-slate-800 dark:text-white mb-6"
-              >
-                Contact Info
-              </h3>
-
+          <div class="lg:w-2/5 space-y-8">
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-xl">
+              <h3 class="text-2xl font-bold mb-6">Contact Info</h3>
+              
               <div class="space-y-6">
                 <div class="flex items-start">
-                  <div
-                    class="bg-teal-100 dark:bg-teal-900/20 w-12 h-12 rounded-full flex items-center justify-center mr-6 text-teal-500"
-                  >
-                    <i class="fas fa-map-marker-alt text-xl"></i>
+                  <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center text-teal-500 mr-4 shrink-0">
+                    <i class="fas fa-map-marker-alt"></i>
                   </div>
                   <div>
-                    <h4 class="font-bold text-slate-800 dark:text-white mb-1">
-                      Location
-                    </h4>
-                    <p class="text-slate-600 dark:text-slate-300">
-                      Delhi, India
-                    </p>
+                    <h4 class="font-bold">Location</h4>
+                    <p class="text-slate-600 dark:text-slate-400">Delhi, India</p>
                   </div>
                 </div>
 
                 <div class="flex items-start">
-                  <div
-                    class="bg-teal-100 dark:bg-teal-900/20 w-12 h-12 rounded-full flex items-center justify-center mr-6 text-teal-500"
-                  >
-                    <i class="fas fa-envelope text-xl"></i>
+                  <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center text-teal-500 mr-4 shrink-0">
+                    <i class="fas fa-envelope"></i>
                   </div>
                   <div>
-                    <h4 class="font-bold text-slate-800 dark:text-white mb-1">
-                      Email
-                    </h4>
-                    <p class="text-slate-600 dark:text-slate-300">
-                      hloamitji@gmail.com
-                    </p>
+                    <h4 class="font-bold">Email</h4>
+                    <a href="mailto:hloamitji@gmail.com" class="text-slate-600 dark:text-slate-400 hover:text-teal-500">hloamitji@gmail.com</a>
                   </div>
                 </div>
 
                 <div class="flex items-start">
-                  <div
-                    class="bg-teal-100 dark:bg-teal-900/20 w-12 h-12 rounded-full flex items-center justify-center mr-6 text-teal-500"
-                  >
-                    <i class="fas fa-phone-alt text-xl"></i>
+                  <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center text-teal-500 mr-4 shrink-0">
+                    <i class="fas fa-phone-alt"></i>
                   </div>
                   <div>
-                    <h4 class="font-bold text-slate-800 dark:text-white mb-1">
-                      Phone
-                    </h4>
-                    <p class="text-slate-600 dark:text-slate-300">
-                      +91 82408 98996
-                    </p>
+                    <h4 class="font-bold">Phone</h4>
+                    <p class="text-slate-600 dark:text-slate-400">+91 82408 98996</p>
                   </div>
                 </div>
               </div>
 
-              <div class="mt-12">
-                <h4 class="font-bold text-slate-800 dark:text-white mb-4">
-                  Follow Me
-                </h4>
-                <div class="flex space-x-4">
-                  <a
-                    href="https://instagram.com/amitchaurasia854"
-                    class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-white hover:bg-teal-500 hover:text-white transition-all"
-                  >
-                    <i class="fab fa-instagram text-xl"></i>
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/amit-chaurasia-95b7662a7"
-                    class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-white hover:bg-blue-500 hover:text-white transition-all"
-                  >
-                    <i class="fab fa-linkedin-in text-xl"></i>
-                  </a>
-                  <a
-                    href="https://x.com/AmitCha999"
-                    class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-white hover:bg-blue-400 hover:text-white transition-all"
-                  >
-                    <i class="fab fa-twitter text-xl"></i>
-                  </a>
-                  <a
-                    href="https://youtube.com/@metubeismine"
-                    class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-white hover:bg-red-500 hover:text-white transition-all"
-                  >
-                    <i class="fab fa-youtube text-xl"></i>
-                  </a>
+              <div class="mt-8 pt-8 border-t border-slate-100 dark:border-slate-700">
+                <h4 class="font-bold mb-4">Follow Me</h4>
+                <div class="flex gap-4">
+                  <a href="https://instagram.com/amitchaurasia854" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-pink-500 hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+                  <a href="https://www.linkedin.com/in/amit-chaurasia-95b7662a7" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://x.com/AmitCha999" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-black hover:text-white transition-all"><i class="fab fa-twitter"></i></a>
+                  <a href="https://youtube.com/@metubeismine" class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center hover:bg-red-600 hover:text-white transition-all"><i class="fab fa-youtube"></i></a>
                 </div>
               </div>
             </div>
@@ -796,114 +428,10 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-white py-12">
-      <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center">
-          <div class="mb-6 md:mb-0">
-            <a href="#" class="text-2xl font-bold"
-              >Amit<span class="text-teal-500">.</span></a
-            >
-            <p class="text-slate-400 mt-2">
-              Creating scroll-stopping content that converts.
-            </p>
-          </div>
-          <div
-            class="flex flex-col md:flex-row md:space-x-12 space-y-4 md:space-y-0"
-          >
-            <div>
-              <h4 class="font-bold text-lg mb-4">Quick Links</h4>
-              <ul class="space-y-2 text-slate-400">
-                <li>
-                  <a href="#home" class="hover:text-white transition-colors"
-                    >Home</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="#portfolio"
-                    class="hover:text-white transition-colors"
-                    >Portfolio</a
-                  >
-                </li>
-                <li>
-                  <a href="#reviews" class="hover:text-white transition-colors"
-                    >Reviews</a
-                  >
-                </li>
-                <li>
-                  <a href="#contact" class="hover:text-white transition-colors"
-                    >Contact</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-bold text-lg mb-4">Services</h4>
-              <ul class="space-y-2 text-slate-400">
-                <li>
-                  <a href="https://instagram.com/amitchaurasia854" class="hover:text-white transition-colors"
-                    >Instagram Reels</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >YouTube Shorts</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Snapchat Lenses</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Video Editing</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 class="font-bold text-lg mb-4">Legal</h4>
-              <ul class="space-y-2 text-slate-400">
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Privacy Policy</a
-                  >
-                </li>
-                <li>
-                  <a href="#" class="hover:text-white transition-colors"
-                    >Terms of Service</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div
-          class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p class="text-slate-400 mb-4 md:mb-0">
-            © 2023 Amit Chaurasia. All rights reserved.
-          </p>
-          <div class="flex space-x-6">
-            <a
-              href="#"
-              class="text-slate-400 hover:text-white transition-colors"
-              >Privacy Policy</a
-            >
-            <a
-              href="#"
-              class="text-slate-400 hover:text-white transition-colors"
-              >Terms of Service</a
-            >
-            <a
-              href="#"
-              class="text-slate-400 hover:text-white transition-colors"
-              >Cookies</a
-            >
-          </div>
-        </div>
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+      <div class="container mx-auto px-6 text-center">
+        <p class="mb-4">© 2024 Amit Chaurasia. All rights reserved.</p>
+        <p class="text-sm opacity-50">Creating scroll-stopping content that converts.</p>
       </div>
     </footer>
 
