@@ -1,146 +1,114 @@
-// ===== Dark Mode Toggle =====
-  const themeToggle = document.getElementById('theme-toggle');
-  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+// ===== Dark Mode Logic =====
+const themeToggle = document.getElementById('theme-toggle');
+const themeToggleMobile = document.getElementById('theme-toggle-mobile');
 
-  // Load saved theme preference or system preference
-  if (
-    localStorage.getItem('color-theme') === 'dark' ||
-    (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-  ) {
+// Check Local Storage or System Preference
+if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
     document.documentElement.classList.add('dark');
-  } else {
+} else {
     document.documentElement.classList.remove('dark');
-  }
+}
 
-  // Theme toggle handler
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('color-theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-  }
-
-  themeToggle?.addEventListener('click', toggleTheme);
-  themeToggleMobile?.addEventListener('click', toggleTheme);
-
-  // ===== Mobile Menu Toggle =====
-  mobileMenuButton?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('hidden');
-  });
-
-  // ===== Video Play/Pause Toggle =====
-  document.querySelectorAll('.play-button').forEach(button => {
-    button.addEventListener('click', (e) => {
-      const video = e.currentTarget.closest('.relative')?.querySelector('video');
-      const icon = e.currentTarget;
-
-      if (!video) return;
-
-      if (video.paused) {
-        video.play();
-        video.muted = false;
-        icon.innerHTML = '<i class="fas fa-pause text-2xl"></i>';
-      } else {
-        video.pause();
-        icon.innerHTML = '<i class="fas fa-play text-2xl"></i>';
-      }
-    });
-  });
-
-  // ===== Star Rating =====
-  document.querySelectorAll('.star-rating').forEach(button => {
-    button.addEventListener('click', () => {
-      const value = parseInt(button.getAttribute('data-value'));
-      document.getElementById('rating').value = value;
-
-      document.querySelectorAll('.star-rating i').forEach((icon, index) => {
-        icon.classList.toggle('fas', index < value);
-        icon.classList.toggle('far', index >= value);
-      });
-    });
-  });
-
-  // ===== Counter Animation =====
-  const counters = document.querySelectorAll('.counter');
-  const speed = 200;
-
-  function animateCounters() {
-    counters.forEach(counter => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText;
-      const increment = target / speed;
-
-      if (count < target) {
-        counter.innerText = Math.ceil(count + increment);
-        setTimeout(animateCounters, 1);
-      } else {
-        counter.innerText = target;
-      }
-    });
-  }
-
-  // Trigger counters only when in view
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounters();
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(counter => {
-    observer.observe(counter);
-  });
-
-  // ===== Contact Form Submission =====
-  const contactForm = document.getElementById('contactForm');
-  contactForm?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(contactForm);
-
-    try {
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-      });
-
-      if (response.ok) {
-        alert("🎉 Thank you! Your message has been received.");
-        contactForm.reset();
-
-        // Reset stars
-        document.querySelectorAll('.star-rating i').forEach(star => {
-          star.classList.remove('fas');
-          star.classList.add('far');
-        });
-      } else {
-        alert("❌ Something went wrong. Please try again later.");
-      }
-    } catch (error) {
-      alert("⚠ Network error. Please check your internet connection.");
+function toggleTheme() {
+    if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+    } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
     }
-  });
+}
 
-  // ===== Smooth Scrolling for Anchor Links =====
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('href');
-      const targetElement = document.querySelector(targetId);
+themeToggle?.addEventListener('click', toggleTheme);
+themeToggleMobile?.addEventListener('click', toggleTheme);
 
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth'
-        });
+// ===== Mobile Menu =====
+const btn = document.getElementById('mobile-menu-button');
+const menu = document.getElementById('mobile-menu');
+const links = menu.querySelectorAll('a'); 
 
-        // Close mobile menu if open
-        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-          mobileMenu.classList.add('hidden');
-        }
-      }
+btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+});
+
+// Close mobile menu when a link is clicked
+links.forEach(link => {
+    link.addEventListener('click', () => {
+        menu.classList.add('hidden');
     });
-  });
+});
+
+// ===== Video Play/Pause =====
+document.querySelectorAll('.play-button').forEach(button => {
+    button.addEventListener('click', (e) => {
+        // Find the specific video container for this button
+        const container = e.currentTarget.closest('.group');
+        const video = container.querySelector('video');
+        
+        if (video.paused) {
+            video.play();
+            video.muted = false; // Unmute when playing
+            e.currentTarget.style.opacity = '0'; // Hide button while playing
+        } else {
+            video.pause();
+            e.currentTarget.style.opacity = '1'; // Show button when paused
+        }
+    });
+});
+
+// Reset play button when video ends
+document.querySelectorAll('video').forEach(video => {
+    video.addEventListener('ended', (e) => {
+        const container = e.currentTarget.closest('.group');
+        const btn = container.querySelector('.play-button');
+        btn.style.opacity = '1';
+    });
+    
+    // Show button if video is clicked to pause
+    video.addEventListener('click', (e) => {
+        const container = e.currentTarget.closest('.group');
+        const btn = container.querySelector('.play-button');
+        
+        if (video.paused) {
+            video.play();
+            btn.style.opacity = '0';
+        } else {
+            video.pause();
+            btn.style.opacity = '1';
+        }
+    });
+});
+
+// ===== Counter Animation =====
+const counters = document.querySelectorAll('.counter');
+const speed = 200;
+
+const animateCounters = () => {
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const inc = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(animateCounters, 20);
+        } else {
+            counter.innerText = target;
+        }
+    });
+};
+
+// Trigger animation when stats come into view
+let ranAnimation = false;
+window.addEventListener('scroll', () => {
+    const section = document.querySelector('.counter');
+    if(section && !ranAnimation) {
+        const sectionPos = section.getBoundingClientRect().top;
+        const screenPos = window.innerHeight;
+        
+        if(sectionPos < screenPos) {
+            animateCounters();
+            ranAnimation = true;
+        }
+    }
+});
