@@ -1,104 +1,70 @@
-:root {
-        --primary: #14b8a6;
-        --secondary: #e2e8f0;
-        --accent: #f59e0b;
-        --text: #e2e8f0;
-        --light-bg: #0f172a;
-        --dark-bg: #f8fafc;
-        --dark-text: #334155;
-    }
-        
-        body.dark {
-            --primary: #14b8a6;
-            --secondary: #e2e8f0;
-            --accent: #f59e0b;
-            --text: #e2e8f0;
-            --light-bg: #0f172a;
-            --dark-bg: #f8fafc;
-            --dark-text: #334155;
-            background-color: var(--light-bg);
-        }
-        
+/* Import Google Font handled in HTML Link */
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text);
-            background-color: var(--light-bg);
-            transition: all 0.3s ease;
-        }
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
 
-        .nav-link::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
+/* Custom Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
 
-        .nav-link:hover::after {
-            width: 100%;
-        }
+.float {
+  animation: float 6s ease-in-out infinite;
+}
 
-        .hero-video {
-            aspect-ratio: 9/16;
-            max-height: 80vh;
-        }
+/* Typing Effect */
+.typing-demo {
+  width: 19ch;
+  animation: typing 3s steps(19), blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  display: inline-block;
+}
 
-        .portfolio-item {
-            transition: transform 0.3s ease;
-        }
+@keyframes typing {
+  from { width: 0 }
+}
 
-        .portfolio-item:hover {
-            transform: translateY(-8px);
-        }
+@keyframes blink {
+  50% { border-color: transparent }
+}
 
-        .review-card {
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+/* Navigation Link Underline Effect */
+.nav-link {
+  position: relative;
+}
 
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-        }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #14b8a6; /* Teal-500 */
+  transition: width 0.3s ease-in-out;
+}
 
-        .float {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        
+.nav-link:hover::after {
+  width: 100%;
+}
 
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .typing-demo {
-            width: 22ch;
-            animation: typing 2s steps(22), blink 0.5s step-end infinite alternate;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid;
-            font-family: monospace;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-        }
-            
-        @keyframes blink {
-            50% { border-color: transparent }
-        }
+/* Hide scrollbar for cleaner look in some browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a; 
+}
+::-webkit-scrollbar-thumb {
+  background: #334155; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #14b8a6; 
+}
